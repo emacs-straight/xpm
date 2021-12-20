@@ -1,12 +1,13 @@
 ;;; xpm.el --- edit XPM images               -*- lexical-binding: t -*-
 
-;; Copyright (C) 2014-2017 Free Software Foundation, Inc.
+;; Copyright (C) 2014-2021 Free Software Foundation, Inc.
 
 ;; Author: Thien-Thi Nguyen <ttn@gnu.org>
 ;; Maintainer: Thien-Thi Nguyen <ttn@gnu.org>
-;; Version: 1.0.4
+;; Version: 1.0.5
+;; Package-Requires: ((cl-lib "0.5") (queue "0.2"))
 ;; Keywords: multimedia, xpm
-;; URL: http://www.gnuvola.org/software/xpm/
+;; URL: https://www.gnuvola.org/software/xpm/
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -19,7 +20,7 @@
 ;; GNU General Public License for more details.
 
 ;; You should have received a copy of the GNU General Public License
-;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;; along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 ;;; Commentary:
 
@@ -68,9 +69,9 @@
 (autoload 'image-toggle-display "image-mode" t) ; hmm is this TRT?
 
 (defvar xpm-raster-inhibit-continuity-optimization nil
-  "Non-nil disables a heuristic in `xpm-raster' filling.
+  "Non-nil disables a heuristic in ‘xpm-raster’ filling.
 Normally, if you pass a well-formed (closed, no edge crossings)
-shape to `xpm-raster', then you can ignore this variable.")
+shape to ‘xpm-raster’, then you can ignore this variable.")
 
 (cl-defstruct (xpm--gg                  ; gathered gleanings
                (:type vector)           ; no ‘:named’ so no predicate
@@ -91,7 +92,7 @@ shape to `xpm-raster', then you can ignore this variable.")
   "Analyze buffer and prepare internal data structures.
 When called as a command, display in the echo area a
 summary of image dimensions, cpp and palette.
-Set buffer-local variable `xpm--gg' and return its value.
+Set buffer-local variable ‘xpm--gg’ and return its value.
 Normally, preparation includes making certain parts of the
 buffer intangible.  Optional arg SIMPLE non-nil inhibits that."
   (interactive)
@@ -176,7 +177,7 @@ buffer intangible.  Optional arg SIMPLE non-nil inhibits that."
 ;;;###autoload
 (defun xpm-generate-buffer (name width height cpp palette)
   "Return a new buffer in XPM image format.
-In this buffer, undo is disabled (see `buffer-enable-undo').
+In this buffer, undo is disabled (see ‘buffer-enable-undo’).
 
 NAME is the buffer and XPM name.  For best interoperation
 with other programs, NAME should be a valid C identifier.
@@ -302,7 +303,7 @@ Optional arg FILL specifies a fill pixel, or t to fill with EDGE.
 
 If FORM is not closed or has inopportune vertical-facing
 concavities, filling might give bad results.  For those cases,
-see variable `xpm-raster-inhibit-continuity-optimization'."
+see variable ‘xpm-raster-inhibit-continuity-optimization’."
   (when (eq t fill)
     (setq fill edge))
   (xpm--w/gg (h) (xpm--gate)
@@ -420,7 +421,7 @@ see variable `xpm-raster-inhibit-continuity-optimization'."
                            (fillarray nin nil)))))))))
 
 (defun xpm-as-xpm (&rest props)
-  "Return the XPM image (via `create-image') of the buffer.
+  "Return the XPM image (via ‘create-image’) of the buffer.
 PROPS are additional image properties to place on
 the new XPM.  See info node `(elisp) XPM Images'."
   (apply 'create-image (buffer-substring-no-properties
@@ -428,7 +429,7 @@ the new XPM.  See info node `(elisp) XPM Images'."
          'xpm t props))
 
 (defun xpm-finish (&rest props)
-  "Like `xpm-as-xpm', but also kill the buffer afterwards."
+  "Like ‘xpm-as-xpm’, but also kill the buffer afterwards."
   (prog1 (apply 'xpm-as-xpm props)
     (kill-buffer nil)))
 

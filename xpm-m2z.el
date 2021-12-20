@@ -1,6 +1,6 @@
 ;;; xpm-m2z.el --- (% span 2) => 0             -*- lexical-binding: t -*-
 
-;; Copyright (C) 2014-2017 Free Software Foundation, Inc.
+;; Copyright (C) 2014-2021 Free Software Foundation, Inc.
 
 ;; Author: Thien-Thi Nguyen <ttn@gnu.org>
 ;; Maintainer: Thien-Thi Nguyen <ttn@gnu.org>
@@ -16,7 +16,7 @@
 ;; GNU General Public License for more details.
 
 ;; You should have received a copy of the GNU General Public License
-;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;; along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 ;;; Commentary:
 
@@ -25,7 +25,7 @@
 ;; "span", i.e., (% (- HI LO -1) 2) => 1, since the origin is *on* an
 ;; integral coordinate (i.e., intersection of row and column).
 ;;
-;; This file provides funcs `xpm-m2z-ellipse' and `xpm-m2z-circle' to
+;; This file provides funcs ‘xpm-m2z-ellipse’ and ‘xpm-m2z-circle’ to
 ;; locally rectify the current situation ("m2z" means "modulo 2 => 0"),
 ;; with the hope that eventually a generalization can be worked back
 ;; into artist.el, perhaps as a subpixel-center minor mode of some sort.
@@ -93,7 +93,7 @@ absolute value of RX or RY is less than 1, the value is nil."
 
 ;;;###autoload
 (defun xpm-m2z-circle (cx cy radius)
-  "Like `xpm-m2z-ellipse' with a shared radius RADIUS."
+  "Like ‘xpm-m2z-ellipse’ with a shared radius RADIUS."
   (xpm-m2z-ellipse cx cy radius radius))
 
 (provide 'xpm-m2z)
